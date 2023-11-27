@@ -1,0 +1,22 @@
+{
+  "name": "first-project",
+  "version": "1.0.0",
+  "description": "'كورس node js في ٣ ساعات - شرح نظري و تطبيقي -  Node JS - MongoDB - Express - API - Postman'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedMohammedSalah/first-node-js-project-.git"
+  },
+  "keywords": [
+    "first"
+  ],
+  "author": "Ahmed Mohamed Salah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedMohammedSalah/first-node-js-project-/issues"
+  },
+  "homepage": "https://github.com/AhmedMohammedSalah/first-node-js-project-#readme"
+}
