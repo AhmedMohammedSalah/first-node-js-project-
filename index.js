@@ -48,14 +48,32 @@ app.get( "/findSumQuery", ( req, res ) => {
 /*
     if you want to render a webpage uou can use ejs files 
     first install it => npm i ejs
-    secondly add views folder  
+    secondly add views folder
+    
 */
 app.get( "/findSum/ejs/:num1/:num2", ( req, res ) => {
-    let total=Number(req.params.num1)+ Number(req.params.num2)
+    let total = Number( req.params.num1 ) + Number( req.params.num2 )
     
-    res.render("addnums.ejs", {
-        num1:Number(req.params.num1),
-        num2:Number(req.params.num2),
+    res.render( "addnums.ejs", {
+        num1: Number( req.params.num1 ),
+        num2: Number( req.params.num2 ),
         total
-    });
-} )
+    } );
+} );
+
+
+/*
+        <Start with Database>
+        first start at mongoDB 
+        install mongoose > npm install mongoose 
+*/
+// DB url connection
+// mongodb+srv://ahmed:ahmed123@cluster0.vnwpnz3.mongodb.net/?retryWrites=true&w=majority
+
+const mongoose = require( 'mongoose' );
+mongoose.connect( 'mongodb+srv://ahmed:ahmed1234@cluster0.vnwpnz3.mongodb.net/?retryWrites=true&w=majority' ).then( () => {
+    console.log( "success connection" );
+    
+} ).catch( (e) => {
+    console.log( e.message);
+})
