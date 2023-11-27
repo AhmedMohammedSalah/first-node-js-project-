@@ -44,3 +44,18 @@ app.get( "/findSumQuery", ( req, res ) => {
         "Result":total
     });
 } )
+// Not important if you use react
+/*
+    if you want to render a webpage uou can use ejs files 
+    first install it => npm i ejs
+    secondly add views folder  
+*/
+app.get( "/findSum/ejs/:num1/:num2", ( req, res ) => {
+    let total=Number(req.params.num1)+ Number(req.params.num2)
+    
+    res.render("addnums.ejs", {
+        num1:Number(req.params.num1),
+        num2:Number(req.params.num2),
+        total
+    });
+} )
