@@ -76,4 +76,71 @@ mongoose.connect( 'mongodb+srv://ahmed:ahmed1234@cluster0.vnwpnz3.mongodb.net/?r
     
 } ).catch( (e) => {
     console.log( e.message);
-})
+} )
+
+// start using models 
+const Article = require( './models/Article' );
+// 
+app.post( "/addDefaultArticle", async( req, res ) => {
+    const newArt = new Article();
+    newArt.title = 'Default Article ';
+    newArt.author = 'Default body ';
+    newArt.body = 'Default user ';
+    newArt.hidden = false;
+    await newArt.save();
+    res.send("Article Saved ")
+} );
+app.post( "/addArticleByBody", async( req, res ) => {
+    const newArt = new Article();
+    newArt.title = req.body.title;
+    newArt.author = req.body.user;
+    newArt.body = req.body.body;
+    newArt.hidden = req.body.hidden;
+    await newArt.save();
+    res.send("Article Saved ")
+} );
+app.get( "/articles", async( req, res ) => {
+
+    const articles =await Article.find();
+    res.json(articles)
+} );
+app.get( "/article", async ( req, res ) => {
+
+    try {
+        await Article.findById(req.body.id).exec();
+        const article =await Article.findById(req.body.id);
+        res.json(article)
+        
+    } catch (error) {
+        res.send( error.message );
+    }
+} );
+app.delete( "/article/:id", async ( req, res ) => {
+
+    try {
+        await Article.findByIdAndDelete(req.params.id);
+        res.send( "article deleted" );
+        
+    } catch (error) {
+        res.send( error.message );
+    }
+} );
+
+app.put( "/article/:id", async ( req, res ) => {
+
+    try {
+        if ( Article.findById( req.params.id ).exec() ) {
+            const newArt = await Article.findByIdAndUpdate( req.params.id, {
+                title: req.body.title,
+                author: req.body.user,
+                body: req.body.body,
+                hidden: req.body.hidden
+            } );
+
+            res.json( newArt );
+        }
+        
+    } catch (error) {
+        res.send( error.message );
+    }
+} );
